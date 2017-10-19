@@ -8,7 +8,7 @@ RUN apt-get install -y $BASE_APKS $BUILD_APKS \
       && rm -rf /var/lib/apt/lists/*
 
 ENV NODE_PREFIX=/usr/local \
-    NODE_VERSION=6.4.0 \
+    NODE_VERSION=8.6.0 \
     NPM_VERSION=latest \
     NODE_SOURCE=/usr/src/node
 
@@ -83,10 +83,10 @@ COPY init.groovy /usr/share/jenkins/ref/init.groovy.d/tcp-slave-agent-port.groov
 
 # jenkins version being bundled in this docker image
 ARG JENKINS_VERSION
-ENV JENKINS_VERSION ${JENKINS_VERSION:-2.28}
+ENV JENKINS_VERSION ${JENKINS_VERSION:-2.73.2}
 
 # jenkins.war checksum, download will be validated using it
-ARG JENKINS_SHA=183125ee4e731a559f39d146a7ffbca08c3e011f
+ARG JENKINS_SHA=1489e498f682e8b61ce4cf8124de200f264b087c
 
 # Can be used to customize where jenkins.war get downloaded from
 ARG JENKINS_URL=https://repo.jenkins-ci.org/public/org/jenkins-ci/main/jenkins-war/${JENKINS_VERSION}/jenkins-war-${JENKINS_VERSION}.war
