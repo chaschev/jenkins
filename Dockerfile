@@ -107,6 +107,13 @@ RUN sudo rm /usr/bin/java \
 RUN curl -L "https://github.com/docker/compose/releases/download/1.8.1/docker-compose-$(uname -s)-$(uname -m)" > /usr/local/bin/docker-compose \
   && chmod +x /usr/local/bin/docker-compose
 
+#Install Gradle
+RUN wget -P /usr/local https://services.gradle.org/distributions/gradle-4.2.1-bin.zip \ 
+  && unzip -d /usr/local/gradle /usr/local/gradle-4.2.1-bin.zip \
+  && chmod +x /usr/local/gradle/gradle-4.2.1/bin/gradle && sudo rm -f /usr/bin/gradle && sudo ln -s /usr/local/gradle/gradle-4.2.1/bin/gradle /usr/bin/gradle 
+
+RUN chown -R ${user} /usr/local
+
 # for main web interface:
 EXPOSE 8080
 
